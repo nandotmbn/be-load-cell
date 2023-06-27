@@ -4,6 +4,7 @@ import { validateRegister } from '../../validators';
 import message from '../../views/message';
 import bcrypt from 'bcrypt';
 import { keyHasher } from '../../utils';
+import _ from 'lodash';
 
 async function register(req: Request, res: Response) {
   const { error } = validateRegister(req.body);
@@ -45,7 +46,7 @@ async function register(req: Request, res: Response) {
   }
 
   const newUser = new Users({
-    ...req.body,
+    ..._.omit(req.body, "email"),
     apiKey,
     password: hashedPassword,
     isActive: true

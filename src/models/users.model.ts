@@ -15,7 +15,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     max: 255,
     min: 0,
-    unique: true
   },
   apiKey: {
     type: String,
